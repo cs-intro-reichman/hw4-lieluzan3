@@ -38,11 +38,11 @@ public class ArrCharOps {
     /** Returns the char value at the specified index. Assume that the array is non-empty.
      */
     public static char charAt(char[] arr, int index) {
-       if(arr.length<index-1)
-       return arr[index];
+       if(arr.length<index+1)
+       return 0;       
        else
-       
-        return 0;
+       return arr[index];
+        
     }
 
     /** If the two arrays have the same value in every index, 
@@ -54,8 +54,11 @@ public class ArrCharOps {
         }
         else{
             for (int i = 0; i < arr1.length; i++) {
-                if(arr1[i]!=arr2[1])
-                return false;
+                if(arr1[i]!=arr2[i])
+                {
+                    return false;
+
+                }
             
             }
             return true;
@@ -122,7 +125,7 @@ public class ArrCharOps {
     */
     public static char[] concat(char[] arr1, char[] arr2) {
         char[] arr3=new char[arr1.length+arr2.length];
-        if(arr2.length+arr2.length==0)
+        if(arr1.length+arr2.length==0)
         return null;
         else{
         for (int i = 0; i < arr1.length; i++) {
