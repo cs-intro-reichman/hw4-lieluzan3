@@ -211,28 +211,29 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
+        
+        if (str1 == null || str2 == null) {
+            return -2; // שגיאה בקלט
+        }
+    
+       
         int minLength = Math.min(str1.length(), str2.length());
+        for (int i = 0; i < minLength; i++) {
+            char char1 = str1.charAt(i);
+            char char2 = str2.charAt(i);
+    
+            if (char1 < char2) {
+                return -1; 
+            } else if (char1 > char2) {
+                return 1; 
+            }
+        }
+    
         if (str1.length() < str2.length()) {
             return -1; 
         } else if (str1.length() > str2.length()) {
             return 1; 
         }
-    else{
-        for (int i = 0; i < minLength; i++) {
-            char char1 = str1.charAt(i);
-            char char2 = str2.charAt(i);
-    
-            
-            if (char1 < char2) {
-                return -1;
-            } else if (char1 > char2) {
-                return 1;
-            }
-        }
-    }
-    
-        
-        
     
         return 0; 
     }
