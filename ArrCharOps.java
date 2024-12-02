@@ -172,14 +172,19 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        int sum=0;
-        
+        long hash = 0;
+    
         for (int i = 0; i < arr.length; i++) {
-            sum+=arr[i]*7^(arr.length-1-i);
+            // Compute power of 7 dynamically
+            long power = 1;
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                power *= 7;
+            }
+            hash += arr[i] * power;
         }
-        return sum;
+    
+        return hash;
     }
-
     /**
      * Compares the two strings lexicographically.
      * Assume that both strings are not empty.
@@ -206,28 +211,28 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        int len = Math.min(str1.length(), str2.length());
-        
-        for (int i = 0; i < len; i++) {
+        int minLength = Math.min(str1.length(), str2.length());
+    
+        for (int i = 0; i < minLength; i++) {
             char char1 = str1.charAt(i);
             char char2 = str2.charAt(i);
     
             if (char1 < char2) {
-                return -1;
+                return -1; // str1 is lexicographically smaller
             } else if (char1 > char2) {
-                return 1;
+                return 1; // str1 is lexicographically greater
             }
         }
     
-        // אם כל התווים שווים, משווים לפי אורך המחרוזות
+        // If all characters are equal, the shorter string is smaller
         if (str1.length() < str2.length()) {
             return -1;
         } else if (str1.length() > str2.length()) {
             return 1;
         }
-        return 0; // המחרוזות זהות
+    
+        return 0; 
     }
-        
 
     
 }
