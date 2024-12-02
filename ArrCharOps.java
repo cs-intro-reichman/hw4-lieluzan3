@@ -175,7 +175,7 @@ public class ArrCharOps {
         int sum=0;
         
         for (int i = 0; i < arr.length; i++) {
-            sum+=arr[i]*7^arr.length-(i+1);
+            sum+=arr[i]*7^(arr.length-1-i);
         }
         return sum;
     }
@@ -206,28 +206,28 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        if(str1.length()<str2.length())
-        return -1;
-        else if(str1.length()==str2.length()){
-            for (int i = 0; i < str1.length(); i++) {
-                char char1=str1.charAt(i);
-                char char2=str1.charAt(i);
-                if(char1<char2){
-                    return -1;
-                }
-                if(char1>char2){
-                    return 1;
-                }
-                else 
-                return 0;
-            }
-            }
-            else if (str1.length()>str2.length()) {
+        int len = Math.min(str1.length(), str2.length());
+        
+        for (int i = 0; i < len; i++) {
+            char char1 = str1.charAt(i);
+            char char2 = str2.charAt(i);
+    
+            if (char1 < char2) {
+                return -1;
+            } else if (char1 > char2) {
                 return 1;
             }
-            return -2;
         }
+    
+        // אם כל התווים שווים, משווים לפי אורך המחרוזות
+        if (str1.length() < str2.length()) {
+            return -1;
+        } else if (str1.length() > str2.length()) {
+            return 1;
+        }
+        return 0; // המחרוזות זהות
+    }
         
 
     
-    }
+}
