@@ -147,20 +147,22 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        char[] arr2=new char[endIndex-beginIndex+1];
-        if(arr.length==0){
-            return null;
+        if (beginIndex < 0 || endIndex > arr.length || beginIndex > endIndex) {
+            throw new IllegalArgumentException("Invalid indices");
         }
-        else{
-            for (int i = beginIndex; i < endIndex; i++) {
-                arr2[i]=arr[i];
-                
-            }
-            return arr2;
-            
+    
+        // Calculate the length of the sub-array
+        int length = endIndex - beginIndex;
+        char[] subArr = new char[length];
+    
+        // Copy elements from arr to subArr
+        for (int i = 0; i < length; i++) {
+            subArr[i] = arr[beginIndex + i];
         }
-
+    
+        return subArr;
     }
+    
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
      *  referred to as the array's "hash code". Later in the course we'll explain what these 
