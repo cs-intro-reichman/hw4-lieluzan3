@@ -212,28 +212,30 @@ public class ArrCharOps {
      */
     public static int compareTo(String str1, String str2) {
         int minLength = Math.min(str1.length(), str2.length());
-        str1 = str1.toLowerCase();
-        str2 = str2.toLowerCase();
+        if (str1.length() < str2.length()) {
+            return -1; 
+        } else if (str1.length() > str2.length()) {
+            return 1; 
+        }
+    else{
         for (int i = 0; i < minLength; i++) {
             char char1 = str1.charAt(i);
             char char2 = str2.charAt(i);
     
+            
             if (char1 < char2) {
-                return -1; // str1 is lexicographically smaller
+                return -1;
             } else if (char1 > char2) {
-                return 1; // str1 is lexicographically greater
+                return 1;
             }
         }
+    }
     
-        // If all characters are equal, the shorter string is smaller
-        if (str1.length() < str2.length()) {
-            return -1;
-        } else if (str1.length() > str2.length()) {
-            return 1;
-        }
+        
+        
     
         return 0; 
     }
-
+    
     
 }
